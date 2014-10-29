@@ -11,11 +11,47 @@
     <script type="text/jsx">
 
 
+var Comment = React.createClass({
+  render: function() {
+    return (
+      <div className="comment" title={this.props.author}>
+        <h2 className="commentAuthor">
+          {this.props.author}
+        </h2>
+        {this.props.children}
+      </div>
+    );
+  }
+});
+
+var CommentList = React.createClass({
+  render: function() {
+    return (
+      <div className="commentList">
+        <Comment author="John Bon Jovi">This is my first comment. I'm really happy!</Comment>
+        <Comment author="Jean Van Damme">I don't like music but Jon Bon Jovi's music makes me reconsider.</Comment>
+      </div>
+    );
+  }
+});
+
+var CommentForm = React.createClass({
+  render: function() {
+    return (
+      <div className="commentForm">
+        Hello, world! I am a CommentForm.
+      </div>
+    );
+  }
+});
+
 var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="commentBox">
-        Hello, world! I am a CommentBox.
+        <h1>Comments</h1>
+        <CommentList />
+        <CommentForm />
       </div>
     );
   }
