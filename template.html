@@ -5,12 +5,13 @@
     <script src="http://fb.me/react-0.12.0.js"></script>
     <script src="http://fb.me/JSXTransformer-0.12.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
   </head>
   <body>
     <div id="content"></div>
     <script type="text/jsx">
 
-
+var converter  = new Showdown.converter();
 var Comment = React.createClass({
   render: function() {
     return (
@@ -18,7 +19,7 @@ var Comment = React.createClass({
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
-        {this.props.children}
+        {converter.makeHtml(this.props.children.toString())}
       </div>
     );
   }
@@ -29,7 +30,7 @@ var CommentList = React.createClass({
     return (
       <div className="commentList">
         <Comment author="John Bon Jovi">This is my first comment. I'm really happy!</Comment>
-        <Comment author="Jean Van Damme">I don't like music but Jon Bon Jovi's music makes me reconsider.</Comment>
+        <Comment author="Jean Van Damme">I don't like music but [Jon Bon Jovi's music](http://google.com/?q=Jon+Bon+Jovi+music) makes me reconsider.</Comment>
       </div>
     );
   }
